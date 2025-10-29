@@ -11,20 +11,16 @@ import SongPage from "./pages/SongPage.jsx";
 import LoginPage from "./pages/LoginPage.jsx";
 import { useAuth } from "./contexts/AuthContext";
 import "./index.css";
+import { registerSW } from "virtual:pwa-register";
 
-// Register Service Worker for PWA
-if ("serviceWorker" in navigator) {
-  window.addEventListener("load", () => {
-    navigator.serviceWorker.register(`${import.meta.env.BASE_URL}sw.js`).then(
-      (registration) => {
-        console.log("ServiceWorker registered:", registration.scope);
-      },
-      (err) => {
-        console.log("ServiceWorker registration failed:", err);
-      }
-    );
-  });
-}
+registerSW({
+  onNeedRefresh() {
+    console.log("New content available, refresh to update.");
+  },
+  onOfflineReady() {
+    console.log("App ready to work offline.");
+  },
+});
 
 // Protected Route wrapper
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
