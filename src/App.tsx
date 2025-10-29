@@ -4,10 +4,12 @@ import SongForm from '@/components/SongForm'
 import CategoryTabs from '@/components/CategoryTabs'
 import { useFirestoreSongs } from '@/hooks/useFirestoreSongs'
 import { useSongStore } from '@/store/useSongStore'
-import type { Song, Category } from '@/types'
+import { getCategoryBySlug, getDefaultCategory } from '@/utils/categories'
+import type { Song } from '@/types'
 
 function App() {
-  const { category = 'currently-working' } = useParams<{ category?: Category }>()
+  const { category: categorySlug = getDefaultCategory().slug } = useParams<{ category?: string }>()
+  const category = getCategoryBySlug(categorySlug) || getDefaultCategory()
   const { songs, addSong: addSongToFirestore, updateSong: updateSongInFirestore, deleteSong: deleteSongFromFirestore } = useFirestoreSongs()
   const { showForm, editingSong, openForm, openEditForm, closeForm } = useSongStore()
 
@@ -27,7 +29,7 @@ function App() {
     await deleteSongFromFirestore(String(id))
   }
 
-  const filteredSongs = songs.filter(s => s.category === category)
+  const filteredSongs = songs.filter(s => s.category === category.id)
 
   return (
     <div className="min-h-screen bg-slate-900 text-slate-100">

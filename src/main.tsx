@@ -36,7 +36,7 @@ function ProtectedRoute({ children }: { children: React.ReactNode }) {
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
-      <BrowserRouter>
+      <BrowserRouter basename="/tune-book">
         <AuthProvider>
           <Routes>
             <Route path="/login" element={<LoginPage />} />
@@ -73,7 +73,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
               }
             />
             <Route
-              path="/"
+              index
               element={<Navigate to="/currently-working" replace />}
             />
           </Routes>

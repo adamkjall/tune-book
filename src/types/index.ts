@@ -11,8 +11,7 @@ export interface Song {
   tabsPdfUrl?: string; // Firebase Storage URL for uploaded PDF
   notes: string;
   progress: number;
-  category: string;
+  category: string; // Category ID from categories config
   tuning?: string;
 }
 
-export type Category = 'currently-working' | 'backlog' | 'learned';

@@ -3,13 +3,8 @@ import { ref, uploadBytes, getDownloadURL, deleteObject } from 'firebase/storage
 import { storage } from '@/lib/firebase'
 import { useAuth } from '@/contexts/AuthContext'
 import { GUITAR_TUNINGS } from '@/utils/tunings'
-import type { Song, Category } from '@/types'
-
-const CATEGORIES = {
-  WORKING: 'currently-working' as Category,
-  BACKLOG: 'backlog' as Category,
-  LEARNED: 'learned' as Category
-}
+import { CATEGORIES, getDefaultCategory } from '@/utils/categories'
+import type { Song } from '@/types'
 
 interface SongFormProps {
   song: Song | null;
@@ -31,7 +26,7 @@ function SongForm({ song, onSubmit, onCancel }: SongFormProps) {
     tabsLinks: [],
     notes: '',
     progress: 0,
-    category: CATEGORIES.WORKING,
+    category: getDefaultCategory().id,
     tuning: 'Standard (E A D G B E)'
   })
   const [pdfFile, setPdfFile] = useState<File | null>(null)
@@ -389,9 +384,11 @@ function SongForm({ song, onSubmit, onCancel }: SongFormProps) {
                 onChange={handleChange}
                 className="w-full px-3 py-2 bg-slate-700 border border-slate-600 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
               >
-                <option value={CATEGORIES.WORKING}>Currently Working</option>
-                <option value={CATEGORIES.BACKLOG}>Backlog</option>
-                <option value={CATEGORIES.LEARNED}>Learned</option>
+                {CATEGORIES.map(({ id, label }) => (
+                  <option key={id} value={id}>
+                    {label}
+                  </option>
+                ))}
               </select>
             </div>
 
