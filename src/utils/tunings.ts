@@ -1,0 +1,15 @@
+export const GUITAR_TUNINGS = [
+  { value: 'Standard (E A D G B E)', label: 'Standard (E A D G B E)' },
+  { value: 'Drop D (D A D G B E)', label: 'Drop D (D A D G B E)' },
+  { value: 'Half Step Down (Eb Ab Db Gb Bb Eb)', label: 'Half Step Down (Eb Ab Db Gb Bb Eb)' },
+  { value: 'Whole Step Down (D G C F A D)', label: 'Whole Step Down (D G C F A D)' },
+  { value: 'Drop C (C G C F A D)', label: 'Drop C (C G C F A D)' },
+  { value: 'Drop C# (C# G# C# F# A# D#)', label: 'Drop C# (C# G# C# F# A# D#)' },
+  { value: 'Open D (D A D F# A D)', label: 'Open D (D A D F# A D)' },
+  { value: 'Open G (D G D G B D)', label: 'Open G (D G D G B D)' },
+  { value: 'DADGAD (D A D G A D)', label: 'DADGAD (D A D G A D)' },
+  { value: 'Drop B (B F# B E G# C#)', label: 'Drop B (B F# B E G# C#)' },
+  { value: 'Drop A (A E A D F# B)', label: 'Drop A (A E A D F# B)' },
+  { value: 'Open E (E B E G# B E)', label: 'Open E (E B E G# B E)' },
+  { value: 'Open C (C G C G C E)', label: 'Open C (C G C G C E)' },
+]
