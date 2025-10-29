@@ -3,7 +3,7 @@ node_modules/
 
 # Build output
 *.local
-
+/dist
 # Logs
 logs
 *.log
